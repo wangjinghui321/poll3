@@ -1,6 +1,5 @@
 package com.briup.apps.poll.service.impl;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,7 @@ public class CourseServiceImpl implements ICourseService {
 	@Override
 	public List<Course> findAll() throws Exception {
 		CourseExample example = new CourseExample();
-
-		return courseMapper.selectByExample(example);
+		return courseMapper.selectByExampleWithBLOBs(example);
 	}
 
 	@Override
@@ -38,27 +36,27 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Override
 	public void saveOrUpdate(Course course) throws Exception {
-		if (course.getId()!=null) {
-			//更新
+		if (course.getId() != null) {
+			// 更新
 			courseMapper.updateByPrimaryKey(course);
 		} else {
-			//新增
+			// 新增
 			courseMapper.insert(course);
 		}
 	}
 
 	@Override
-	public void delete(long id) throws Exception {
+	public void deleteById(long id) throws Exception {
 		courseMapper.deleteByPrimaryKey(id);
 
 	}
 
 	@Override
 	public void batchDatele(List<Long> ids) throws Exception {
-		for(long id:ids){
-			
+		for (long id : ids) {
+			courseMapper.deleteByPrimaryKey(id);
 		}
-		
+
 	}
 
 }

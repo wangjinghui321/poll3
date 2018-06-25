@@ -16,7 +16,7 @@ import io.swagger.annotations.Api;
 @Api(description = "课程相关接口")
 @RestController
 @RequestMapping("/course")
-public class CourserController {
+public class CourseController {
 	@Autowired
 	private ICourseService courseService;
 
@@ -24,10 +24,11 @@ public class CourserController {
 	public MsgResponse findAllCourse() {
 		try {
 			List<Course> list = courseService.findAll();
-			//返回统一格式的信息
+			//返回统一格式的信息 返回成功信息
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			e.printStackTrace();
+			//返回失败信息
 			return MsgResponse.error(e.getMessage());
 		}
 	}

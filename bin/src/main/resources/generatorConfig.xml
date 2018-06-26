@@ -5,8 +5,7 @@
 <!-- mybatis-generator的核心配置文件 -->
 <generatorConfiguration>
 	<classPathEntry
-		location="
-G:\briup\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar" />
+		location="G:\briup\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar" />
 
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"

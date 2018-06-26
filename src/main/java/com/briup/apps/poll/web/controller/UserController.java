@@ -13,6 +13,7 @@ import com.briup.apps.poll.service.IUserService;
 import com.briup.apps.poll.util.MsgResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @Api(description="用户相关的接口")
 @RestController
@@ -22,6 +23,7 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
+	@ApiOperation(value="查找所有用户信息 ")
 	@GetMapping("findAllUser")
 	public MsgResponse findAllUser(){
 		try {
@@ -33,6 +35,7 @@ public class UserController {
 		}
 	}
 	
+	@ApiOperation(value="通过ID查找用户信息")
 	@GetMapping("findUserById")
 	public MsgResponse findById(long id){
 		try {
@@ -44,6 +47,7 @@ public class UserController {
 		}
 	}
 	
+	@ApiOperation(value="通过关键字查找用户信息",notes="需要输入完整name")
 	@GetMapping("query")
 	public MsgResponse query(String keywords){
 		try {
@@ -55,6 +59,7 @@ public class UserController {
 		}
 	}
 	
+	@ApiOperation(value="保存或更新用户信息",notes="保存时不需要输入ID，更新时需要输入ID")
 	@PostMapping("saveOrUpdate")
 	public MsgResponse saveOrUpdate(User user){
 		try {
@@ -66,6 +71,7 @@ public class UserController {
 		}
 	}
 	
+	@ApiOperation(value="通过ID删除用户")
 	@GetMapping("deleteById")
 	public MsgResponse deleteById(long id){
 		try {
@@ -78,6 +84,7 @@ public class UserController {
 		}
 	}
 	
+	@ApiOperation(value="通过一组ID批量删除用户")
 	@GetMapping("batchDelete")
 	public MsgResponse batchDelete(Long[] ids){
 		try {

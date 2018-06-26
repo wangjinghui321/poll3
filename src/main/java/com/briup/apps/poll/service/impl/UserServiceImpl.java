@@ -38,7 +38,7 @@ public class UserServiceImpl implements IUserService{
 	public void saveOrUpdate(User user) throws Exception {
 		if(user.getId()!=null){
 			//更新
-			userMapper.updateByPrimaryKey(user);
+			userMapper.updateByPrimaryKeySelective(user);
 		} else{
 			//插入
 			userMapper.insert(user);

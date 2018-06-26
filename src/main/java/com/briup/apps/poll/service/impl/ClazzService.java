@@ -25,7 +25,7 @@ public class ClazzService implements IClazzService{
 	public void saveOrupdate(Clazz clazz) throws Exception {
 		// TODO Auto-generated method stub
 		if(clazz.getId()!=null){
-			clazzMapper.updateByPrimaryKey(clazz);
+			clazzMapper.updateByPrimaryKeySelective(clazz);
 		}else{
 			clazzMapper.insert(clazz);
 		}	

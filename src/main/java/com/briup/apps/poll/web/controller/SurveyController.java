@@ -46,7 +46,7 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("通过课调编号查找课程信息")
+	@ApiOperation("通过课调编号查找课调信息")
 	@GetMapping("querysurvey")
 	public MsgResponse querySurvey(String keywords){
 		try {

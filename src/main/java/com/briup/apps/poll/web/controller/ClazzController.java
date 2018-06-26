@@ -45,6 +45,26 @@ public class ClazzController {
 			e.printStackTrace();
 		}
 	}
+	@GetMapping("delete")
+	public void delete(long id){
+		try {
+			clazzService.deleteById(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	@GetMapping("findkey")
+	public MsgResponse findKey(String keywords){
+		try {
+		   List<Clazz> list=clazzService.query(keywords);
+		   return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	
 
 }

@@ -40,4 +40,17 @@ public class ClazzService implements IClazzService{
 		
 	}
 
+	@Override
+	public List<Clazz> query(String keywords) throws Exception {
+		ClazzExample example=new ClazzExample();
+		example.createCriteria().andNameLike(keywords);
+		return clazzMapper.selectByExampleWithBLOBs(example);
+	}
+
+	@Override
+	public void deleteById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		clazzMapper.deleteByPrimaryKey(id);
+		
+	}
 }

@@ -6,94 +6,97 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.apps.poll.bean.User;
-import com.briup.apps.poll.service.IUserService;
+import com.briup.apps.poll.bean.Answers;
+import com.briup.apps.poll.bean.Course;
+import com.briup.apps.poll.service.IAnswersService;
 import com.briup.apps.poll.util.MsgResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(description="用户相关的接口")
+@Api(description = "答題卡相关接口")
 @RestController
-@RequestMapping("/user")
-public class UserController {
-
+@RequestMapping("/answers")
+public class AnswersController {
 	@Autowired
-	private IUserService userService;
-	
-	@ApiOperation(value="查找所有用户信息 ")
-	@GetMapping("findAllUser")
-	public MsgResponse findAllUser(){
+private IAnswersService answersService;
+	@ApiOperation(value = "查询所有")
+	@GetMapping("findAllAnswers")
+	public MsgResponse findAllAnswers() {
 		try {
-			List<User> list = userService.findAll();
-			return MsgResponse.success("success",list);
+			List<Answers> list = answersService.findAll();
+			// 返回统一格式的信息 返回成功信息
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// 返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+
+	@ApiOperation(value = "通过id查询")
+	@GetMapping("findById")
+	public MsgResponse findById(long id) {
+		try {
+			Answers answers = answersService.findById(id);
+			return MsgResponse.success("success", answers);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@ApiOperation(value="通过ID查找用户信息")
-	@GetMapping("findUserById")
-	public MsgResponse findById(long id){
-		try {
-			User user = userService.findById(id);
-			return MsgResponse.success("sucdess", user);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-	
-	@ApiOperation(value="通过关键字查找用户信息",notes="需要输入完整name")
+
+	@ApiOperation(value = "通过关键字查询")
+
 	@GetMapping("query")
-	public MsgResponse query(String keywords){
+	public MsgResponse query(String keywords) {
 		try {
-			List<User> list = userService.query(keywords);
+			List<Answers> list = answersService.query(keywords);
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@ApiOperation(value="保存或更新用户信息",notes="保存时不需要输入ID，更新时需要输入ID")
+
+	@ApiOperation(value = "保存或更新")
 	@PostMapping("saveOrUpdate")
-	public MsgResponse saveOrUpdate(User user){
+	public MsgResponse saveOrUpdate(Answers answers) {
 		try {
-			userService.saveOrUpdate(user);
-			return MsgResponse.success("success",user);
+			answersService.saveOrUpdate(answers);
+			return MsgResponse.success("success", answers);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@ApiOperation(value="通过ID删除用户")
+
+	@ApiOperation(value = "通过id删除")
 	@GetMapping("deleteById")
-	public MsgResponse deleteById(long id){
+	public MsgResponse deleteById(@RequestParam long id) {
 		try {
-			userService.deleteById(id);
+			answersService.deleteById(id);
 			return MsgResponse.success("success", id);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@ApiOperation(value="通过一组ID批量删除用户")
+
+	@ApiOperation(value = "批量删除")
 	@GetMapping("batchDelete")
-	public MsgResponse batchDelete(Long[] ids){
+	public MsgResponse batchDelete(@RequestParam List<Long> ids) {
 		try {
-			userService.batchDelete(ids);
+			answersService.batchDatele(ids);
 			return MsgResponse.success("success", ids);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
-			// TODO: handle exception
+
 		}
 	}
 }

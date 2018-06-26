@@ -9,24 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.apps.poll.bean.Survey;
-import com.briup.apps.poll.service.ISurveyService;
+import com.briup.apps.poll.bean.Grade;
+import com.briup.apps.poll.service.IGradeService;
 import com.briup.apps.poll.util.MsgResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(description="课调相关接口")
+@Api(description="年级相关接口")
 @RestController
-@RequestMapping("/survey")
-public class SurveyController {
+@RequestMapping("/grade")
+public class GradeController {
 	@Autowired
-	private ISurveyService surveyService;
-	@ApiOperation("查找所有课调信息")
-	@GetMapping("findAllSurvey")
-	public MsgResponse findAllSurvey(){
+	private IGradeService gradeService;
+	@ApiOperation("查找所有年级信息")
+	@GetMapping("findAllGrade")
+	public MsgResponse findAllGrade(){
 		try {
-			List<Survey> list=surveyService.findAllSurvey();
+			List<Grade> list=gradeService.findAllGrade();
+			
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -34,11 +35,11 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("通过ID查找课调信息")
-	@GetMapping("findSurveyById")
-	public MsgResponse findSurveyById(@RequestParam long id){
+	@ApiOperation("通过ID查找年级信息")
+	@GetMapping("findById")
+	public MsgResponse findById(@RequestParam long id){
 		try {
-			Survey list=surveyService.findSurveyById(id);
+			Grade list=gradeService.findById(id);
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -46,11 +47,11 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("通过课调编号查找课调信息")
-	@GetMapping("querysurvey")
-	public MsgResponse querySurvey(String keywords){
+	@ApiOperation("通过班级名查找年级信息")
+	@GetMapping("query")
+	public MsgResponse query(String keywords){
 		try {
-			List<Survey> list=surveyService.querySurvey(keywords);
+			List<Grade> list=gradeService.query(keywords);
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -58,24 +59,23 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@ApiOperation("添加或修改课调信息")
+	@ApiOperation("添加或修改年级信息")
 	@PostMapping("saveOrupdate")
-	public MsgResponse saveOrupdate(Survey survey){
+	public MsgResponse saveOrupdate(Grade grade){
 		try {
-			surveyService.saveOrupdate(survey);
-			return MsgResponse.success("success", survey);
+			gradeService.saveOrupdate(grade);
+			return MsgResponse.success("success", grade);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("通过ID删除课调信息")
-	@GetMapping("deleteSurveyById")
-	public MsgResponse deleteSurveyById(@RequestParam long id){
+	@ApiOperation("通过ID删除年级信息")
+	@GetMapping("deleteById")
+	public MsgResponse deleteById(@RequestParam long id){
 		try {
-			surveyService.deleteSurveyById(id);
+			gradeService.deleteById(id);
 			return MsgResponse.success("success", id);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -83,11 +83,11 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("批量删除课调信息")
-	@GetMapping("batchSurveyDelete")
-	public MsgResponse batchSurveyDelete(@RequestParam List<Long> ids){
+	@ApiOperation("批量删除年级信息")
+	@GetMapping("batchDelete")
+	public MsgResponse batchDelete(@RequestParam List<Long> ids){
 		try {
-			surveyService.batchSurveyDelete(ids);
+			gradeService.batchDelete(ids);
 			return MsgResponse.success("success", ids);
 		} catch (Exception e) {
 			e.printStackTrace();

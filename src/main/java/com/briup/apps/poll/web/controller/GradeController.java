@@ -16,13 +16,13 @@ import com.briup.apps.poll.util.MsgResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(description="班级相关接口")
+@Api(description="年级相关接口")
 @RestController
 @RequestMapping("/grade")
 public class GradeController {
 	@Autowired
 	private IGradeService gradeService;
-	@ApiOperation("查找所有班级信息")
+	@ApiOperation("查找所有年级信息")
 	@GetMapping("findAllGrade")
 	public MsgResponse findAllGrade(){
 		try {
@@ -35,7 +35,7 @@ public class GradeController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("通过ID查找班级信息")
+	@ApiOperation("通过ID查找年级信息")
 	@GetMapping("findById")
 	public MsgResponse findById(@RequestParam long id){
 		try {
@@ -47,7 +47,7 @@ public class GradeController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("通过班级名查找班级信息")
+	@ApiOperation("通过班级名查找年级信息")
 	@GetMapping("query")
 	public MsgResponse query(String keywords){
 		try {
@@ -59,7 +59,7 @@ public class GradeController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("添加或修改班级信息")
+	@ApiOperation("添加或修改年级信息")
 	@PostMapping("saveOrupdate")
 	public MsgResponse saveOrupdate(Grade grade){
 		try {
@@ -71,7 +71,7 @@ public class GradeController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("通过ID删除班级信息")
+	@ApiOperation("通过ID删除年级信息")
 	@GetMapping("deleteById")
 	public MsgResponse deleteById(@RequestParam long id){
 		try {
@@ -83,7 +83,7 @@ public class GradeController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation("批量删除班级信息")
+	@ApiOperation("批量删除年级信息")
 	@GetMapping("batchDelete")
 	public MsgResponse batchDelete(@RequestParam List<Long> ids){
 		try {

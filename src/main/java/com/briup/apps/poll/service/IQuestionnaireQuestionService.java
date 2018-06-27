@@ -11,4 +11,7 @@ public interface IQuestionnaireQuestionService {
 	
 	List<QuestionnaireQuestionVM> findAllQuestionnaireQuestionVM() throws Exception;
 	
+	void saveOrUpdateQuestionnaireQuestion(QuestionnaireQuestion questionnaireQuestion) throws Exception;
+	
+	void deleteById(long id) throws Exception;
 }

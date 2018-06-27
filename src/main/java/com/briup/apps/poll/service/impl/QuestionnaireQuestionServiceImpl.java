@@ -30,6 +30,22 @@ public class QuestionnaireQuestionServiceImpl  implements IQuestionnaireQuestion
 		return questionnaireQuestionVMMapper.selectAll();
 	}
 
+	@Override
+	public void saveOrUpdateQuestionnaireQuestion(QuestionnaireQuestion questionnaireQuestion) throws Exception {
+		if(questionnaireQuestion.getId()!=null){
+			questionnaireQuestionMapper.updateByPrimaryKeySelective(questionnaireQuestion);
+		}else {
+			questionnaireQuestionMapper.insert(questionnaireQuestion);
+		}
+		
+	}
+
+	@Override
+	public void deleteById(long id) throws Exception {
+		questionnaireQuestionMapper.deleteByPrimaryKey(id);
+		
+	}
+
 
 
 }

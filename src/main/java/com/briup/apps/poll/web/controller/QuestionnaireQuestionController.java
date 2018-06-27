@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.QuestionnaireQuestion;
@@ -48,6 +50,28 @@ public class QuestionnaireQuestionController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
-	 
+	
+	@ApiOperation("添加或修改桥表信息")
+	@PostMapping("saveOrUpdateQuestionnaireQuestion")
+	public MsgResponse saveOrUpdateQuestionnaireQuestion(QuestionnaireQuestion questionnaireQuestion){
+		try {
+			questionnaireQuestionService.saveOrUpdateQuestionnaireQuestion(questionnaireQuestion);
+			return MsgResponse.success("success", questionnaireQuestion);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@ApiOperation("通过ID删除桥表信息")
+	@GetMapping("deleteById")
+	public MsgResponse deleteById(@RequestParam long id){
+		try {
+			questionnaireQuestionService.deleteById(id);
+			return MsgResponse.success("success", id);
+		} catch (Exception e) {		
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 }

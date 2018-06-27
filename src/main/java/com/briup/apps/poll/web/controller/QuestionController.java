@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Question;
+import com.briup.apps.poll.bean.extend.QuestionVM;
 import com.briup.apps.poll.service.IQuestionService;
 import com.briup.apps.poll.util.MsgResponse;
 
@@ -29,6 +30,20 @@ public class QuestionController {
 			List<Question> list = questionService.findAll();
 			//返回统一格式的信息 返回成功信息
 			return MsgResponse.success("question", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value = "查询所有信息", notes="携带题目信息")
+	@GetMapping("findAllVM")
+	public MsgResponse findAllVM() {
+		try {
+		List<QuestionVM> list=questionService.findAllQuestion();
+			//返回统一格式的信息 返回成功信息
+			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//返回失败信息

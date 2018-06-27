@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.briup.apps.poll.bean.Clazz;
 import com.briup.apps.poll.bean.ClazzExample;
+import com.briup.apps.poll.bean.extend.ClazzVM;
 import com.briup.apps.poll.dao.ClazzMapper;
+import com.briup.apps.poll.dao.extend.ClazzVMMapper;
 import com.briup.apps.poll.service.IClazzService;
 
 @Service
 public class ClazzService implements IClazzService{
     @Autowired
     private ClazzMapper clazzMapper;
+    @Autowired
+    private ClazzVMMapper clazzVMMapper;
 	@Override
 	public List<Clazz> findAllClazz() throws Exception {
 		// TODO Auto-generated method stub
@@ -52,5 +56,11 @@ public class ClazzService implements IClazzService{
 		// TODO Auto-generated method stub
 		clazzMapper.deleteByPrimaryKey(id);
 		
+	}
+
+	@Override
+	public List<ClazzVM> findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return clazzVMMapper.selectAll();
 	}
 }

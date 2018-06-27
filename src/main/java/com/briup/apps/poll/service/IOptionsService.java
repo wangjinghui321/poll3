@@ -2,23 +2,18 @@ package com.briup.apps.poll.service;
 
 import java.util.List;
 
-import com.briup.apps.poll.bean.Question;
-import com.briup.apps.poll.bean.extend.QuestionVM;
+import com.briup.apps.poll.bean.Options;
 
-public interface IQuestionService {
+
+
+public interface IOptionsService {
 	/**
 	 * 查询所有
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	List<Question> findAll() throws Exception;
-	/**
-	 * 查询所有，携带题目信息
-	 * @return
-	 * @throws Exception
-	 */
-	List<QuestionVM> findAllQuestion() throws Exception;
+	List<Options> findAll() throws Exception;
 
 	/**
 	 * 通过id查询
@@ -28,7 +23,7 @@ public interface IQuestionService {
 	 * @throws Exception
 	 */
 
-	Question findById(long id) throws Exception;
+	Options findById(long id) throws Exception;
 
 	/**
 	 * 通过关键字查询
@@ -38,16 +33,16 @@ public interface IQuestionService {
 	 * @throws Exception
 	 */
 
-	List<Question> query(String keywords) throws Exception;
+	List<Options> query(String keywords) throws Exception;
 
 	/**
 	 * 保存或者更新
 	 * 
-	 * @param course
+	 * @param options
 	 * @throws Exception
 	 */
 
-	void saveOrUpdate(Question course) throws Exception;
+	void saveOrUpdate(Options options) throws Exception;
 
 	/**
 	 * 通过id删除

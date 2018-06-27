@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.briup.apps.poll.bean.QuestionnaireQuestion;
 import com.briup.apps.poll.bean.QuestionnaireQuestionExample;
+import com.briup.apps.poll.bean.extend.QuestionnaireQuestionVM;
 import com.briup.apps.poll.dao.QuestionnaireQuestionMapper;
+import com.briup.apps.poll.dao.extend.QuestionnaireQuestionVMMapper;
 import com.briup.apps.poll.service.IQuestionnaireQuestionService;
 
 @Service
@@ -15,7 +16,8 @@ public class QuestionnaireQuestionServiceImpl  implements IQuestionnaireQuestion
 
 	@Autowired
 	private QuestionnaireQuestionMapper questionnaireQuestionMapper;
-
+	@Autowired
+	private QuestionnaireQuestionVMMapper questionnaireQuestionVMMapper;
 	@Override
 	public List<QuestionnaireQuestion> findAll() throws Exception {
 		QuestionnaireQuestionExample example = new QuestionnaireQuestionExample();
@@ -23,20 +25,11 @@ public class QuestionnaireQuestionServiceImpl  implements IQuestionnaireQuestion
 	}
 
 	@Override
-	public void deleteById(long id) throws Exception {
-		questionnaireQuestionMapper.deleteByPrimaryKey(id);
-		
+	public List<QuestionnaireQuestionVM> findAllQuestionnaireQuestionVM() throws Exception {
+
+		return questionnaireQuestionVMMapper.selectAll();
 	}
 
-	@Override
-	public void insert(QuestionnaireQuestion qq) throws Exception {
-		questionnaireQuestionMapper.insert(qq);
-		
-	}
 
-	@Override
-	public void updateByPrimaryKey(QuestionnaireQuestion qq) throws Exception {
-		questionnaireQuestionMapper.updateByPrimaryKey(qq);
-		
-	}
+
 }

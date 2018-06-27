@@ -9,107 +9,97 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.briup.apps.poll.bean.Answers;
-import com.briup.apps.poll.bean.Course;
-import com.briup.apps.poll.bean.extend.AnswersVM;
-import com.briup.apps.poll.service.IAnswersService;
+import com.briup.apps.poll.bean.Options;
+import com.briup.apps.poll.service.IOptionsService;
 import com.briup.apps.poll.util.MsgResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-
-@Api(description = "答題卡相关接口")
+@Api(description = "题目选项相关接口")
 @RestController
-@RequestMapping("/answers")
-public class AnswersController {
+@RequestMapping("/options")
+
+public class OptionsController {
+	
 	@Autowired
-private IAnswersService answersService;
-	@ApiOperation(value = "查询所有")
-	@GetMapping("findAllAnswers")
-	public MsgResponse findAllAnswers() {
+	private IOptionsService optionsService;
+	
+	@ApiOperation(value = "查询所有题目选项")
+	@GetMapping("findAllOptions")
+	public MsgResponse findAllOptions(){
 		try {
-			List<Answers> list = answersService.findAll();
-			// 返回统一格式的信息 返回成功信息
+			List<Options> list = optionsService.findAll();
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
-			// 返回失败信息
 			return MsgResponse.error(e.getMessage());
 		}
 	}
 	
-	@ApiOperation(value = "查询所有",notes="携带survey信息")
-	@GetMapping("findAllVM")
-	public MsgResponse findAllVM() {
-		try {
-			List<AnswersVM> list = answersService.findAllAnswers();
-			return MsgResponse.success("success", list);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-
 	@ApiOperation(value = "通过id查询")
 	@GetMapping("findById")
-	public MsgResponse findById(long id) {
+	public MsgResponse findById(@RequestParam long id){
 		try {
-			Answers answers = answersService.findById(id);
-			return MsgResponse.success("success", answers);
+			Options options = optionsService.findById(id);
+			return MsgResponse.success("success", options);
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	
 	@ApiOperation(value = "通过关键字查询")
-
 	@GetMapping("query")
-	public MsgResponse query(String keywords) {
+	public MsgResponse query(String keywords){
 		try {
-			List<Answers> list = answersService.query(keywords);
+			List<Options> list = optionsService.query(keywords);
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	
 	@ApiOperation(value = "保存或更新")
 	@PostMapping("saveOrUpdate")
-	public MsgResponse saveOrUpdate(Answers answers) {
+	public MsgResponse saveOrUpdate(Options options){
 		try {
-			answersService.saveOrUpdate(answers);
-			return MsgResponse.success("success", answers);
+			optionsService.saveOrUpdate(options);
+			return MsgResponse.success("success", null);
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	
 	@ApiOperation(value = "通过id删除")
 	@GetMapping("deleteById")
-	public MsgResponse deleteById(@RequestParam long id) {
+	public MsgResponse deleteById(@RequestParam long id){
 		try {
-			answersService.deleteById(id);
-			return MsgResponse.success("success", id);
+			optionsService.deleteById(id);
+			return MsgResponse.success("success", null);
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
+	
 	@ApiOperation(value = "批量删除")
-	@GetMapping("batchDelete")
-	public MsgResponse batchDelete(@RequestParam List<Long> ids) {
+	@GetMapping("batchDatele")
+	public MsgResponse batchDatele(@RequestParam List<Long> ids){
 		try {
-			answersService.batchDatele(ids);
-			return MsgResponse.success("success", ids);
-
+			optionsService.batchDatele(ids);
+			return MsgResponse.success("success", null);
 		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
-
 		}
 	}
+
 }

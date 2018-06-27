@@ -23,6 +23,18 @@ import io.swagger.annotations.ApiOperation;
 public class QuestionController {
 	@Autowired
 	private IQuestionService questionService;
+	
+	@ApiOperation(value = "保存或修改问题",notes="当id不为空表示修改，否则表示新增，保存或更新时要提交选项的内容")
+	@PostMapping("saveOrUpdateQuestion")
+	public MsgResponse saveOrUpdateQuestion(QuestionVM questionVM){
+		try {
+			questionService.saveOrUpdateQuestionVM(questionVM);
+			return MsgResponse.success("success", null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	@ApiOperation(value = "查询所有信息")
 	@GetMapping("findAllQuestion")
 	public MsgResponse findAllQuestion() {

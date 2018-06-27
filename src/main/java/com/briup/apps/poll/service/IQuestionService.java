@@ -48,6 +48,12 @@ public interface IQuestionService {
 	 */
 
 	void saveOrUpdate(Question course) throws Exception;
+	/**
+	 * 保存或修改（包含选项）
+	 * @param course
+	 * @throws Exception
+	 */
+	void saveOrUpdateQuestionVM(QuestionVM questionVM) throws Exception;
 
 	/**
 	 * 通过id删除

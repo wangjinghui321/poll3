@@ -85,6 +85,18 @@ public class QuestionController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+	@ApiOperation(value = "批量删除")
+	@GetMapping("batchDatele")
+	public MsgResponse batchDatele(@RequestParam List<Long> ids){
+		try {
+			questionService.batchDatele(ids);
+			return MsgResponse.success("success", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 
 	@ApiOperation(value = "保存或更新")
 	@PostMapping("saveOrUpdate")

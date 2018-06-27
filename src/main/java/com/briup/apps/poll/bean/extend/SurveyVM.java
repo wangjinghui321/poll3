@@ -1,7 +1,9 @@
 package com.briup.apps.poll.bean.extend;
 
 import java.io.Serializable;
+import java.util.List;
 
+import com.briup.apps.poll.bean.Answers;
 import com.briup.apps.poll.bean.Clazz;
 import com.briup.apps.poll.bean.Course;
 import com.briup.apps.poll.bean.Questionnaire;
@@ -20,6 +22,7 @@ public class SurveyVM implements Serializable {
 	private User user;
 	private Clazz clazz;
 	private Questionnaire questionnaire;
+	private List<Answers> answers;
 	
 	public Long getId() {
 		return id;
@@ -68,6 +71,12 @@ public class SurveyVM implements Serializable {
 	}
 	public void setQuestionnaire(Questionnaire questionnaire) {
 		this.questionnaire = questionnaire;
+	}
+	public List<Answers> getAnswers() {
+		return answers;
+	}
+	public void setAnswers(List<Answers> answers) {
+		this.answers = answers;
 	}
 	
 	

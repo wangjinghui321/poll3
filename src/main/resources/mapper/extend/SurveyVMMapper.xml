@@ -22,8 +22,24 @@
         
          <association  column="questionnaire_id" property="questionnaire" 
         select="com.briup.apps.poll.dao.QuestionnaireMapper.selectByPrimaryKey"></association>
+        
+        <collection column="id" property="answers"
+          select="selectAnswersBySurveyId" />
+   
+    
        
     </resultMap>
+    
+    <resultMap type="com.briup.apps.poll.bean.Answers" id="MapAnswersVM">
+        
+        <result column="survey_id" property="surveyId"/>
+
+     </resultMap>
+       
+       <select id="selectAnswersBySurveyId" parameterType="long"
+         resultMap="MapAnswersVM" >
+          select * from poll_answers where survey_id=#{id}
+       </select>
     
     
   

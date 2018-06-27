@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Clazz;
+import com.briup.apps.poll.bean.extend.ClazzVM;
 import com.briup.apps.poll.service.IClazzService;
 import com.briup.apps.poll.util.MsgResponse;
 
@@ -32,6 +33,17 @@ public class ClazzController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+		@ApiOperation(value="查询所有班级信息",notes="班级中携带年级和班主任信息")
+		@GetMapping("findAllVM")
+		public MsgResponse findAllVM(){
+			try {
+				List<ClazzVM> list=clazzService.findAll();
+				return MsgResponse.success("success", list);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return MsgResponse.error(e.getMessage());
+			}
+		}
 	@ApiOperation("保存或修改班级信息")
 	@GetMapping("saveOrupdate")
 	public void savaOrupdate(Clazz clazz){

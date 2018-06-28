@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Question;
+import com.briup.apps.poll.bean.extend.QuestionVM;
 import com.briup.apps.poll.service.IQuestionService;
 import com.briup.apps.poll.util.MsgResponse;
 
@@ -22,6 +23,18 @@ import io.swagger.annotations.ApiOperation;
 public class QuestionController {
 	@Autowired
 	private IQuestionService questionService;
+	
+	@ApiOperation(value = "保存或修改问题",notes="当id不为空表示修改，否则表示新增，保存或更新时要提交选项的内容")
+	@PostMapping("saveOrUpdateQuestion")
+	public MsgResponse saveOrUpdateQuestion(QuestionVM questionVM){
+		try {
+			questionService.saveOrUpdateQuestionVM(questionVM);
+			return MsgResponse.success("success", null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	@ApiOperation(value = "查询所有信息")
 	@GetMapping("findAllQuestion")
 	public MsgResponse findAllQuestion() {
@@ -29,6 +42,20 @@ public class QuestionController {
 			List<Question> list = questionService.findAll();
 			//返回统一格式的信息 返回成功信息
 			return MsgResponse.success("question", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value = "查询所有信息", notes="携带题目信息")
+	@GetMapping("findAllVM")
+	public MsgResponse findAllVM() {
+		try {
+		List<QuestionVM> list=questionService.findAllQuestion();
+			//返回统一格式的信息 返回成功信息
+			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 			//返回失败信息
@@ -66,6 +93,18 @@ public class QuestionController {
 			questionService.deleteById(id);
 			return MsgResponse.success("success", id);
 		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@ApiOperation(value = "批量删除")
+	@GetMapping("batchDatele")
+	public MsgResponse batchDatele(@RequestParam List<Long> ids){
+		try {
+			questionService.batchDatele(ids);
+			return MsgResponse.success("success", null);
+		} catch (Exception e) {
+			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}

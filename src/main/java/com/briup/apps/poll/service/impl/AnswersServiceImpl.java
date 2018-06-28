@@ -7,13 +7,17 @@ import org.springframework.stereotype.Service;
 
 import com.briup.apps.poll.bean.Answers;
 import com.briup.apps.poll.bean.AnswersExample;
+import com.briup.apps.poll.bean.extend.AnswersVM;
 import com.briup.apps.poll.dao.AnswersMapper;
+import com.briup.apps.poll.dao.extend.AnswersVMMapper;
 import com.briup.apps.poll.service.IAnswersService;
 
 @Service("answersService")
 public class AnswersServiceImpl implements IAnswersService {
 	@Autowired
 	private AnswersMapper answersMapper;
+	@Autowired
+	private AnswersVMMapper answersVMMapper;
 
 	@Override
 	public List<Answers> findAll() throws Exception {
@@ -56,6 +60,11 @@ public class AnswersServiceImpl implements IAnswersService {
 			answersMapper.deleteByPrimaryKey(id);
 		}
 		
+	}
+
+	@Override
+	public List<AnswersVM> findAllAnswers() throws Exception {
+		return answersVMMapper.selectAll();
 	}
 
 }

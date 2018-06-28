@@ -3,6 +3,7 @@ package com.briup.apps.poll.service;
 import java.util.List;
 
 import com.briup.apps.poll.bean.Answers;
+import com.briup.apps.poll.bean.extend.AnswersVM;
 
 public interface IAnswersService {
 	/**
@@ -12,6 +13,12 @@ public interface IAnswersService {
 	 * @throws Exception
 	 */
 	List<Answers> findAll() throws Exception;
+	/**
+	 * 查询所有，携带survey信息
+	 * @return
+	 * @throws Exception
+	 */
+	List<AnswersVM> findAllAnswers() throws Exception;
 
 	/**
 	 * 通过id查询

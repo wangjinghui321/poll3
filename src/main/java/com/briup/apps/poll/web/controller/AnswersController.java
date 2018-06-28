@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Answers;
+
+import com.briup.apps.poll.bean.extend.AnswersVM;
+
 import com.briup.apps.poll.service.IAnswersService;
 import com.briup.apps.poll.util.MsgResponse;
 
@@ -32,6 +35,18 @@ private IAnswersService answersService;
 		} catch (Exception e) {
 			e.printStackTrace();
 			// 返回失败信息
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value = "查询所有",notes="携带survey信息")
+	@GetMapping("findAllVM")
+	public MsgResponse findAllVM() {
+		try {
+			List<AnswersVM> list = answersService.findAllAnswers();
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
 	}

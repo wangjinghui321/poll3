@@ -70,6 +70,11 @@ public class SurveyServiceImpl implements ISurveyService{
 			surveymapper.deleteByPrimaryKey(id);
 		}
 	}
+	@Override
+	public void saveOrupdateSurveyVM(SurveyVM surveyVM) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 

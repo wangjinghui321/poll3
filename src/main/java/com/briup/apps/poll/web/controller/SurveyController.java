@@ -14,6 +14,7 @@ import com.briup.apps.poll.bean.extend.SurveyVM;
 import com.briup.apps.poll.service.ISurveyService;
 import com.briup.apps.poll.util.MsgResponse;
 
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -109,6 +110,20 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 			// TODO: handle exception
 		}
+	}
+	
+	//@PostMapping("saveOrUpdateSurvey")
+	public MsgResponse saveOrUpdateSurvey(SurveyVM surveyVM){
+		
+		try {
+			
+			return MsgResponse.success("success", surveyVM);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+		 
 	}
 
 }

@@ -20,5 +20,7 @@ public interface ISurveyService {
 	
 	//查找课调信息 以及相关的 课程、班级、教师、问卷信息
 	List<SurveyVM> selectAllSurvey() throws Exception;
+	
+	void saveOrupdateSurveyVM(SurveyVM surveyVM) throws Exception;
 
 }

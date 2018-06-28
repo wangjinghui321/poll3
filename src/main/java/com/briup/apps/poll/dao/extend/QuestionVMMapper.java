@@ -10,5 +10,7 @@ public interface QuestionVMMapper {
 	 * @return
 	 */
 	List<QuestionVM> selectAll();
+	
+	List<QuestionVM> selectByQuestionnaireId(long id);
 
 }

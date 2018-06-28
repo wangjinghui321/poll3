@@ -6,6 +6,10 @@
 		select * from poll_question
 	</select>
 	
+	<select id="selectByQuestionnaireId" parameterType="long" resultMap="QuestionVMResultMap">
+	select * from poll_question where id in(select question_id from poll_qq where questionnaire_id = #{id})
+	</select>
+	
 	<!-- 定义结果集 -->
 	<resultMap type="com.briup.apps.poll.bean.extend.QuestionVM" 
 	    id="QuestionVMResultMap">

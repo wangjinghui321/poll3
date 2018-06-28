@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Questionnaire;
+import com.briup.apps.poll.bean.extend.QuestionnaireVM;
 import com.briup.apps.poll.service.IQuestionnaireService;
 import com.briup.apps.poll.util.MsgResponse;
 
@@ -29,6 +30,17 @@ public class QuestionnaireController {
 		try {
 			List<Questionnaire> list = questionnaireService.findAll();
 			return MsgResponse.success("succss", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@ApiOperation(value = "通过id查询问卷",notes="包含问题和选项")
+	@GetMapping("findQuestionnaireVMById")
+	public MsgResponse findQuestionnaireVMById(@RequestParam long id) {
+		try {
+			QuestionnaireVM qnVM = questionnaireService.findQuestionnaireById(id);
+			return MsgResponse.success("succss", qnVM);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());

@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Survey;
+import com.briup.apps.poll.bean.extend.SurveyVM;
 import com.briup.apps.poll.service.ISurveyService;
 import com.briup.apps.poll.util.MsgResponse;
+
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +24,21 @@ import io.swagger.annotations.ApiOperation;
 public class SurveyController {
 	@Autowired
 	private ISurveyService surveyService;
-	@ApiOperation("查找所有课调信息")
+	
+	
+	@ApiOperation(value="查找所有课调信息及相关信息", notes="包括班级、教师、问卷、课程信息")
+	@GetMapping("selectAllSurvey")
+	public MsgResponse selectAllSurvey(){
+		try {
+			List<SurveyVM> list= surveyService.selectAllSurvey();
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@ApiOperation(value="查找所有课调信息")
 	@GetMapping("findAllSurvey")
 	public MsgResponse findAllSurvey(){
 		try {
@@ -94,6 +110,20 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 			// TODO: handle exception
 		}
+	}
+	
+	//@PostMapping("saveOrUpdateSurvey")
+	public MsgResponse saveOrUpdateSurvey(SurveyVM surveyVM){
+		
+		try {
+			
+			return MsgResponse.success("success", surveyVM);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+		 
 	}
 
 }

@@ -5,6 +5,14 @@
     select * from poll_survey
   </select>
   
+  <select id="selectById" parameterType="long" resultMap="SurveyVMResultMap">
+ 		select * from poll_survey where id = #{id}
+ 		<!-- id,status,code,surveyDate,course_id,user_id,clazz_id,questionnaire_id -->
+ </select>
+  
+  
+  
+  
   <!--  定义结果集 -->
     <resultMap type="com.briup.apps.poll.bean.extend.SurveyVM" id="SurveyVMResultMap">
         <id column="id" property="id"/>
@@ -14,14 +22,14 @@
         <association  column="course_id" property="course" 
         select="com.briup.apps.poll.dao.CourseMapper.selectByPrimaryKey"></association>
         
-        <association  column="clazz_id" property="clazz" 
-        select="com.briup.apps.poll.dao.ClazzMapper.selectByPrimaryKey"></association>
+        <association  column="clazz_id" property="clazzVM" 
+        select="com.briup.apps.poll.dao.extend.ClazzVMMapper.selectById"></association>
         
          <association  column="user_id" property="user" 
         select="com.briup.apps.poll.dao.UserMapper.selectByPrimaryKey"></association>
         
-         <association  column="questionnaire_id" property="questionnaire" 
-        select="com.briup.apps.poll.dao.QuestionnaireMapper.selectByPrimaryKey"></association>
+         <association  column="questionnaire_id" property="questionnaireVM" 
+        select="com.briup.apps.poll.dao.extend.QuestionnaireVMMapper.selectById"></association>
         
         <collection column="id" property="answers"
           select="selectAnswersBySurveyId" />

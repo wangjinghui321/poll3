@@ -63,4 +63,9 @@ public class ClazzService implements IClazzService{
 		// TODO Auto-generated method stub
 		return clazzVMMapper.selectAll();
 	}
+
+	@Override
+	public ClazzVM selectById(long id) throws Exception {
+		return clazzVMMapper.selectById(id);
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Clazz;
@@ -82,6 +83,18 @@ public class ClazzController {
 		   return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="通过ID查询所有班级信息",notes="班级中携带年级和班主任信息")
+	@GetMapping("selectById")
+	public MsgResponse selectById(@RequestParam long id){
+		try {
+			ClazzVM list=clazzService.selectById(id);
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}

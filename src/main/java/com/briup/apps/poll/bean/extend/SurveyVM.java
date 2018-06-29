@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.briup.apps.poll.bean.Answers;
-import com.briup.apps.poll.bean.Clazz;
 import com.briup.apps.poll.bean.Course;
-import com.briup.apps.poll.bean.Questionnaire;
 import com.briup.apps.poll.bean.User;
 
 public class SurveyVM implements Serializable {
@@ -20,10 +18,26 @@ public class SurveyVM implements Serializable {
 	private String surveyDate;
 	private Course course;
 	private User user;
-	private Clazz clazz;
-	private Questionnaire questionnaire;
+	private ClazzVM clazzVM;
+	private QuestionnaireVM questionnaireVM;
+	
 	private List<Answers> answers;
 	
+	
+	
+	public ClazzVM getClazzVM() {
+		return clazzVM;
+	}
+	public void setClazzVM(ClazzVM clazzVM) {
+		this.clazzVM = clazzVM;
+	}
+	
+	public QuestionnaireVM getQuestionnaireVM() {
+		return questionnaireVM;
+	}
+	public void setQuestionnaireVM(QuestionnaireVM questionnaireVM) {
+		this.questionnaireVM = questionnaireVM;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -60,18 +74,7 @@ public class SurveyVM implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Clazz getClazz() {
-		return clazz;
-	}
-	public void setClazz(Clazz clazz) {
-		this.clazz = clazz;
-	}
-	public Questionnaire getQuestionnaire() {
-		return questionnaire;
-	}
-	public void setQuestionnaire(Questionnaire questionnaire) {
-		this.questionnaire = questionnaire;
-	}
+	
 	public List<Answers> getAnswers() {
 		return answers;
 	}

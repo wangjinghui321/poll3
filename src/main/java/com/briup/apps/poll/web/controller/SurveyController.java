@@ -25,8 +25,23 @@ public class SurveyController {
 	@Autowired
 	private ISurveyService surveyService;
 	
+	@ApiOperation(value="保存或修改课调信息",
+			notes="如果参数中包含ID表示修改操作，否则表示保存操作")
+    //@PostMapping("saveOrUpdateSurveyVM")
+    public MsgResponse saveOrUpdateSurveyVM(Survey survey){
+	      try {
+			surveyService.saveOrupdateSurveyVM(survey);
+			return MsgResponse.success("success", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	
-	@ApiOperation(value="查找所有课调信息及相关信息", notes="包括班级、教师、问卷、课程信息")
+	
+	
+	@ApiOperation(value="级联查询所有课调信息及相关信息", notes="包括班级、教师、问卷、课程信息")
 	@GetMapping("selectAllSurvey")
 	public MsgResponse selectAllSurvey(){
 		try {
@@ -74,9 +89,15 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	@ApiOperation("添加或修改课调信息")
-	@PostMapping("saveOrupdate")
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	@ApiOperation(value="保存或修改课调信息",notes="如果参数中包含ID表示修改操作，否则表示保存操作，"
+			+ "只需录入clazz_id,course_id,user_id,questionnaire_id")
+    @PostMapping("saveOrupdate")
 	public MsgResponse saveOrupdate(Survey survey){
 		try {
 			surveyService.saveOrupdate(survey);
@@ -100,7 +121,7 @@ public class SurveyController {
 		}
 	}
 	@ApiOperation("批量删除课调信息")
-	@GetMapping("batchSurveyDelete")
+	@PostMapping("batchSurveyDelete")
 	public MsgResponse batchSurveyDelete(@RequestParam List<Long> ids){
 		try {
 			surveyService.batchSurveyDelete(ids);
@@ -112,18 +133,19 @@ public class SurveyController {
 		}
 	}
 	
-	//@PostMapping("saveOrUpdateSurvey")
-	public MsgResponse saveOrUpdateSurvey(SurveyVM surveyVM){
-		
+	
+	@ApiOperation(value="通过ID级联查询所有课调信息及相关信息" ,notes="包括班级、教师、问卷、课程信息")
+	@GetMapping("selectById")
+	public MsgResponse selectById(@RequestParam long id){
 		try {
-			
-			return MsgResponse.success("success", surveyVM);
+			SurveyVM list=surveyService.selectById(id);
+			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-		 
 	}
+	
 
 }

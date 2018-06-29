@@ -9,5 +9,7 @@ public interface SurveyVMMapper {
 	List<SurveyVM> selectAllSurvey();
 	
 	void saveOrupdateSurveyVM(SurveyVM surveyVM);
+	
+	SurveyVM selectById(long id) ;
 
 }

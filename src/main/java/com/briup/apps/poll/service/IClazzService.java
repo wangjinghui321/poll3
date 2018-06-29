@@ -19,4 +19,6 @@ public interface IClazzService {
 	List<Clazz> query(String keywords) throws Exception;
 	
 	void deleteById(long id) throws Exception;
+	
+	ClazzVM selectById(long id) throws Exception;
 }

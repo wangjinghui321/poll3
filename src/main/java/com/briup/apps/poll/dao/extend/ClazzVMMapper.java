@@ -11,4 +11,6 @@ public interface ClazzVMMapper {
 	 */
   List<ClazzVM> selectAll();
   
+  ClazzVM selectById(long id);
+  
 }

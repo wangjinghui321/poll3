@@ -1,5 +1,7 @@
 package com.briup.apps.poll.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,13 @@ public class SurveyServiceImpl implements ISurveyService{
 		if(survey.getId()!=null){
 			surveymapper.updateByPrimaryKeySelective(survey);
 		}else{
+			survey.setStatus(Survey.STATUS_INIT);
+			survey.setCode("");
+			
+			Date now =new Date();
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String surveydate=sdf.format(now);
+			survey.setSurveydate(surveydate);
 			surveymapper.insert(survey);
 		}
 	}
@@ -71,9 +80,17 @@ public class SurveyServiceImpl implements ISurveyService{
 		}
 	}
 	@Override
-	public void saveOrupdateSurveyVM(SurveyVM surveyVM) throws Exception {
+	public void saveOrupdateSurveyVM(Survey survey) throws Exception {
 		// TODO Auto-generated method stub
-		
+		if(survey.getId()!=null){
+	        surveymapper.updateByPrimaryKeySelective(survey);
+		}else{
+			surveymapper.insert(survey);
+		}
+	}
+	@Override
+	public SurveyVM selectById(long id) throws Exception {
+		return svmMapper.selectById(id);
 	}
 
 	

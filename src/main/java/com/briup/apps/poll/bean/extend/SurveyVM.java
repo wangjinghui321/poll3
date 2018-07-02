@@ -13,6 +13,7 @@ public class SurveyVM implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
+	private Double average;
 	private String status;
 	private String code;
 	private String surveyDate;
@@ -80,6 +81,12 @@ public class SurveyVM implements Serializable {
 	}
 	public void setAnswers(List<Answers> answers) {
 		this.answers = answers;
+	}
+	public Double getAverage() {
+		return average;
+	}
+	public void setAverage(Double average) {
+		this.average = average;
 	}
 	
 	

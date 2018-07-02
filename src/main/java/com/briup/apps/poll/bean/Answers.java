@@ -1,5 +1,7 @@
 package com.briup.apps.poll.bean;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class Answers {
     /**
      *
@@ -17,6 +19,7 @@ public class Answers {
      *
      * @mbg.generated Mon Jun 25 16:40:21 CST 2018
      */
+    @ApiModelProperty("单选题答案 eg:5|4|3")
     private String selections;
 
     /**
@@ -26,6 +29,7 @@ public class Answers {
      *
      * @mbg.generated Mon Jun 25 16:40:21 CST 2018
      */
+    @ApiModelProperty("多选题答案 eg:5,3|4,2|3,1")
     private String checkes;
 
     /**
@@ -35,6 +39,7 @@ public class Answers {
      *
      * @mbg.generated Mon Jun 25 16:40:21 CST 2018
      */
+    @ApiModelProperty("多选题答案 eg:aaa|sss")
     private String content;
 
     /**

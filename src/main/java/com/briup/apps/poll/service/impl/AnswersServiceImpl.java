@@ -67,4 +67,16 @@ public class AnswersServiceImpl implements IAnswersService {
 		return answersVMMapper.selectAll();
 	}
 
+	@Override
+	public List<Answers> findAnswersBySurveyId(long id) throws Exception {
+		
+			AnswersExample example = new AnswersExample();
+			example.createCriteria().andSurveyIdEqualTo(id);
+			return answersMapper.selectByExample(example);
+	}
+	
+
+	
+	
+
 }

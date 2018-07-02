@@ -6,6 +6,11 @@ import com.briup.apps.poll.bean.Answers;
 import com.briup.apps.poll.bean.extend.AnswersVM;
 
 public interface IAnswersService {
+	
+	/*
+	 * 通过survey_id查询 answers信息
+	 */
+	List<Answers> findAnswersBySurveyId(long id) throws Exception;		
 	/**
 	 * 查询所有
 	 * 

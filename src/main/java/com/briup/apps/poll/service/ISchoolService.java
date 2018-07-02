@@ -9,8 +9,8 @@ public interface ISchoolService {
 	List<School> findAll() throws Exception;
 	School findById(long id) throws Exception;
 	List<School> query(String keywords) throws Exception;
-	void insert(School school) throws Exception;
-	void updateByPrimaryKey(School school) throws Exception;
+	void insertOrupdate(School school) throws Exception;
+	
 	void deleteByPrimaryKey(long id) throws Exception;
 	void batchDelete(List<Long> ids) throws Exception;
 	

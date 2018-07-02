@@ -58,40 +58,28 @@ public class SchoolController {
 		}
 	}
 	
-	@ApiOperation(value = "保存学校信息")
-	@PostMapping("save")
-	public String save(School school){
+	@ApiOperation(value = "更新或保存学校信息")
+	@PostMapping("insertOrupdate")
+	public MsgResponse insertOrupdate(School school){
 		try {
-			schoolService.insert(school);
-			return "success!";
+			schoolService.insertOrupdate(school);
+			return MsgResponse.success("success", school);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "error， "+e.getMessage();
+			return MsgResponse.error(e.getMessage());
 		}
 	}
 	
-	@ApiOperation(value = "更新学校信息")
-	@PostMapping("updateByExample")
-	public String updateByExample(School school){
-		try {
-			schoolService.updateByPrimaryKey(school);
-			return "success!";
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return "error, "+e.getMessage();
-		}
-	}
 	
 	@ApiOperation(value = "通过id删除学校信息")
 	@GetMapping("deleteById")
-	public String deleteById(long id){
+	public MsgResponse deleteById(long id){
 		try {
 			schoolService.deleteByPrimaryKey(id);
-			return "success!"; 
+			return MsgResponse.success("success", id); 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "error, "+e.getMessage();
+			return MsgResponse.error(e.getMessage());
 		}
 	}
 	

@@ -47,16 +47,17 @@ public class SchoolServiceimpl implements ISchoolService{
 		}
 		
 	}
+	
 
 	@Override
-	public void insert(School school) throws Exception {
-		schoolMapper.insert(school);
+	public void insertOrupdate(School school) throws Exception {
+		if (school.getId() != null) {
+			schoolMapper.updateByPrimaryKey(school);
+		} else {
+			schoolMapper.insert(school);
+
+		}
 		
-	}
-
-	@Override
-	public void updateByPrimaryKey(School school) throws Exception {
-		schoolMapper.updateByPrimaryKeySelective(school);	
 	}
 
 }

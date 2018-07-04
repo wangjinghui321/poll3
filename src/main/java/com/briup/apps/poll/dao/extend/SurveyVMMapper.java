@@ -11,5 +11,7 @@ public interface SurveyVMMapper {
 	void saveOrupdateSurveyVM(SurveyVM surveyVM);
 	
 	SurveyVM selectById(long id) ;
+	
+	List<SurveyVM> selectByClazzIdAndCheckPass(long id);
 
 }

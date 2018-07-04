@@ -92,6 +92,11 @@ public class SurveyServiceImpl implements ISurveyService{
 	public SurveyVM selectById(long id) throws Exception {
 		return svmMapper.selectById(id);
 	}
+	@Override
+	public List<SurveyVM> findByClazzIdAndCheckPass(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return svmMapper.selectByClazzIdAndCheckPass(id);
+	}
 
 	
 

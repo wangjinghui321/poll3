@@ -26,5 +26,7 @@ public interface ISurveyService {
 	
 	//通过ID查找课调信息 以及相关的 课程、班级、教师、问卷信息
 	SurveyVM selectById(long id) throws Exception;
+	
+	List<SurveyVM> findByClazzIdAndCheckPass(long id) throws Exception;
 
 }

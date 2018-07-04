@@ -16,7 +16,7 @@ import com.briup.apps.poll.util.MsgResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api("学生相关接口")
+@Api(description="学生相关接口")
 @RestController
 @RequestMapping("/student")
 public class StudentController {

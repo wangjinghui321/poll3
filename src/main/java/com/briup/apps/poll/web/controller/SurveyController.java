@@ -283,7 +283,6 @@ public class SurveyController {
 			surveyService.deleteSurveyById(id);
 			return MsgResponse.success("success", id);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
